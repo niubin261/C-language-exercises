@@ -1,0 +1,134 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct personnode{
+	int no;
+	float salary;
+	struct personnode*next;
+}node;
+node*CreateList();//头插法建立链表
+node*CreateList2();//尾巴插入
+void PrintList(node*);//打印链表
+node*DeleteList(node*,int);//删除指定的节点
+node*InsertList(node*,int idx,int no,float salary);//在特定的节点之后添加,如果特定的节点没有找到那就直接在链表的最后添加
+node*SortList(node*);//给链表排序，不要打我，我就是换一下链表内的值
+int main(){
+	node*phead=NULL;
+	phead = CreateList();
+	PrintList(phead);
+	phead = InsertList(phead, 1001, 1003, 2);
+	phead = DeleteList(phead, 1004);
+	PrintList(phead);
+
+}
+node*CreateList(){//头插法建立链表就是反人类
+	int no;
+	float salary;
+	node*p = NULL;
+	node*phead = NULL;
+	while (true){
+		
+		scanf("%d", &no);
+		scanf("%f", &salary);
+		
+		if ((no == 0) && (salary == 0)){
+
+			return phead;
+		}else{
+			p = (node*)malloc(sizeof(node));
+			p->no = no;
+			p->salary = salary;
+			p->next = phead;
+			phead = p;
+		}
+	}
+}
+node*CreateList2(){//VS为什么默认大括号好难受
+	int no;
+	float salary;
+	node*p = NULL;
+	node*phead = NULL;
+	node*prear = NULL;
+	while (true){
+		scanf("%d", &no);
+		scanf("%f", &salary);
+
+		if ((no == 0) && (salary == 0)){
+
+			return phead;
+		}
+		else{
+			p = (node*)malloc(sizeof(node));
+			if (phead == NULL){
+				phead = p;
+				prear = phead;
+			}
+			else{
+				prear->next = p;
+				prear = p;
+			}
+		}
+
+
+	}
+}
+void PrintList(node*phead){
+	node*p = phead;
+	while (p != NULL){
+		printf("%d", p->no);
+		printf("XX");
+		p = p->next;
+
+	}
+}
+node*InsertList(node*phead,int idx,int no,float salary){
+	node*p = phead;
+	node*q = NULL;
+	while (p != NULL){
+		if (p->no == idx)break;
+		else
+			p = p->next;
+	}
+	if (p == NULL){
+		q = (node*)malloc(sizeof(node));
+		q->no = no;
+		q->salary = salary;
+		p->next = q;
+		q->next = NULL;
+	}
+	else{
+		q = (node*)malloc(sizeof(node));
+		q->no = no;
+		q->salary = salary;
+		q->next = p->next;
+		p->next = q;
+	}
+	return phead;
+}
+
+node*DeleteList(node*phead, int idxno){
+	node*p = phead;
+	node*q=phead;
+	while (p!=NULL){
+		if (p->no == idxno){
+			if (p == phead){
+				phead = phead->next;
+				free(p);
+				return phead;
+			}
+			else{
+				q->next = p->next;
+				free(p);
+				return phead;
+			}
+
+		}
+		q = p;
+		p = p->next;
+	}
+	printf("哈哈，没有找到！");//嘻嘻
+	return phead;
+}
+
+node*SortList(node*phead){//使用选择排序法
+
+}

@@ -1,1 +1,81 @@
 
+#include<stdio.h>
+void exchangesort(int a[]);
+void bubblesort(int a[]);
+void selectsort(int a[]);
+void shellsort(int a[]);
+void quicksort(int a[],int,int);
+int partition(int a[]);
+void print(int a[]);
+int main(){
+	int a[10] = { 11, 23, 0, 17, 64, 1, 4, 99, 99, 10 };
+	selectsort(a);
+	print(a);
+}
+void exchangesort(int a[10]){
+	int temp;
+	for (int i = 0; i < 9; i++){
+		for (int j = i + 1; j < 10; j++){
+			if (a[j]>a[i]){
+				temp = a[j];
+				a[j] = a[i];
+				a[i] = temp;
+			}
+		}
+	}
+}
+void selectsort(int a[10]){
+	int temp;
+	for (int i = 0; i < 10; i++){
+		int k = i;
+		for (int j = k + 1; j < 10; j++){
+			if (a[j]>a[k]){
+				k = j;
+			}
+			if (k != i){
+				temp = a[k];
+				a[k] = a[i];
+				a[i] = temp;
+			}
+		}
+	}
+}
+void bubblesort(int a[10]){
+	int temp;
+	for (int i = 0; i < 9; i++){
+		for (int j = 0; j < 10 - i - 1; j++){
+			if (a[j + 1] > a[j]){
+				temp = a[j + 1];
+				a[j + 1] = a[j];
+				a[j] = temp;
+			}
+		}
+	}
+}
+int partition(int a[],int low,int high){
+	int temp;
+	int pivotkey = a[low];
+	while (low < high){
+		while (a[low] < pivotkey)low++;
+		while (a[high] > pivotkey)high++;
+		temp = a[low];
+		a[low] = a[high];
+		a[high] = a[low];
+	}
+	return low;
+	
+
+}
+void quicksort(int a[], int low, int high){
+	if (low < high){
+		int pivotlocal = partition(a, low, high);
+		quicksort(a, low, pivotlocal-1);
+		quicksort(a, pivotlocal+1, high);
+	}
+}
+void print(int a[10]){
+	for (int i = 0; i < 10; i++){
+		printf("%d ", a[i]);
+		//i == 4 ? printf("\n") :printf("\t");
+	}
+}

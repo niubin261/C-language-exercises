@@ -51,7 +51,8 @@ node*CreateList(){//头插法建立链表就是反人类
 		}
 	}
 }
-node*CreateList2(){//VS为什么默认大括号好难受
+node*CreateList2(){//VS为什么默认大括号好难受尾巴	
+//插入发
 	int no;
 	float salary;
 	node*p = NULL;

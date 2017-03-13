@@ -129,6 +129,6 @@ node*DeleteList(node*phead, int idxno){
 	return phead;
 }
 
-node*SortList(node*phead){//使用选择排序法
+node*SortList(node*phead){//使用交换排序法
 
 }

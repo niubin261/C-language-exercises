@@ -35,19 +35,16 @@ extern void StackTraverse(Stack);//不好意思我要从栈底遍历，你咬我
 #include <stdio.h>
 #include <cstdlib>
 //最麻烦的就是那个如果是空栈怎么办
-void InitStack(Stack&S)
-{
+void InitStack(Stack&S){
 	S.base = (int*)malloc(sizeof(int)*S.stacksize);
 	if (!S.base)exit(0);//分配失败了，哈哈，垃圾电脑
 	S.top = S.base;//空栈
 	S.stacksize = STACK_INIT_SIZE;
 	 
 }
-void DestroyStack(Stack&S)
-{
+void DestroyStack(Stack&S){
 	
-	for (int i = 0; i < S.stacksize; i++)
-	{
+	for (int i = 0; i < S.stacksize; i++){
 		int*p = S.base+1;
 		free(S.base);
 		 
@@ -55,17 +52,14 @@ void DestroyStack(Stack&S)
 	}
 	 
 }
-int GetTop(Stack&S)
-{
+int GetTop(Stack&S){
 	if (S.base == S.top)exit(0);//空栈哈哈
 	return *(S.top-1);
 	 
 }
-void Push(Stack&S, int e)
-{
+void Push(Stack&S, int e){
 	int*p;
-	if (S.stacksize == S.top - S.base)
-	{
+	if (S.stacksize == S.top - S.base){
 		S.base = (int*)realloc(S.base, (S.stacksize + STACK_INCE)*sizeof(int));//realloc函数将原来的数据复制到一个新的空间
 		if (!S.base)exit(0);
 		S.top = S.base + S.stacksize;
@@ -78,42 +72,33 @@ void Push(Stack&S, int e)
 	S.top = p;
 
 }
-void Pop(Stack&S)
-{
+void Pop(Stack&S){
 	if (S.top == S.base)exit(0);
 	S.top = S.top-1;
 	printf("%d", *(S.top));
 }
-void StackTraverse(Stack S)
-{
-	for (int*p = S.base; p != S.top; p++)
-	{
+void StackTraverse(Stack S){
+	for (int*p = S.base; p != S.top; p++){
 		printf("%d", *p);
 	}
 }
-void ClearStack(Stack&S)
-{
+void ClearStack(Stack&S){
 	S.top = S.base;
 }
-bool StackEmpty(Stack S)
-{
-	if (S.base == S.top)
-	{
+bool StackEmpty(Stack S){
+	if (S.base == S.top){
 		return true;
-	} else
-	{
+	} else{
 		return false;
 	}
 }
-int StackLength(Stack S)
-{
+int StackLength(Stack S){
 	return S.top - S.base;
 }
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #include "stack.h"
 #include <stdio.h>
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]){
 
 
 	Stack S;

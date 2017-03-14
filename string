@@ -1,0 +1,130 @@
+#include <stdio.h>
+#include <cstdlib>
+int StrCmp(char*, char*);
+void StrCpy(char*, char*);
+int StrLenght(char*);
+bool StrEmpty(char*);
+void ClearStr(char*);
+void ConnectStr(char*,char*);
+int SubStr(char*,char* );
+void StrInsert(char*, int, char*);
+void StrDelete(char*, int);
+void DestroyStr(char*);
+int main()
+{
+	char*str1 = "boy";
+	char*str2 = "bad";
+	char*tmp = NULL;
+	StrCpy(tmp, str1);
+	printf("%d", StrCmp(str1, str2));
+
+}
+int StrLength(char*str)
+{
+	if (str == NULL)
+	{
+		
+		return 0;
+
+	}
+	int i = 0;
+	while (str[i]!='\0')
+	{
+		i++;
+	}
+	return i;
+}//比如“boy”输出的长度就是3，呵呵，不傻
+int StrCmp(char*str1, char*str2)
+{
+	int i = 0;
+	while (str1[i] != '\0'&&str1[i] == str2[i])
+	{
+		i++;
+	}
+	return str1[i] - str2[i];
+}
+void StrCpy(char*tmp, char*str)
+{
+	if (str == NULL)
+	{
+		return;
+	}
+	int i = 0;
+	int size;
+	size = StrLenght(str);
+	tmp = (char*)malloc(sizeof(char)*(size + 1));
+	while (str[i]!='\0')
+	{
+		tmp[i] = str[i];
+		i++;
+	}
+	tmp[i] = '\0';
+}
+bool StrEmpty(char*str)
+{
+	if (str == NULL)
+	{
+		return false;
+	}
+	if (str[0] == '\0')
+	{
+		return true;
+	}else
+	{
+		return false;
+	}
+}
+void ClearStr(char*str)
+{
+	int l = StrLenght(str);
+	for (int i = 0; i < l; i++)
+	{
+		str[i] = '\0';
+	}
+}
+void ConnetcStr(char*str1, char*str2)//不在考虑那字符串为NULL，不然太麻烦了，主要是自己太菜了，哈哈哈............
+{
+	int len1 = StrLenght(str1);
+	int len2 = StrLenght(str2);
+
+	str1 = (char*)realloc(str1, (len1 + len2 + 1)*sizeof(char));
+	int i = 0;
+	for (; i < len2; i++)
+	{
+		str1[i + len1] = str2[i];
+
+
+	}
+
+	str1[i] = '\0';
+
+}
+/*下面都不考虑字符串为null的情况了，呵呵呵呵*/
+int SubStr(char*str1, char*str2)
+{
+	int i = 0;
+	int j = 0;
+	
+}
+void StrInsert(char*str1, int local, char*str2)//最简单的方法就是新开一个空间之后将数据搬移进去，简单快速，不装逼
+{
+	
+}
+void DestroyStr(char*str)
+{
+	
+}
+void StrDelete(char*str, int local)
+{
+	int len = StrLenght(str);
+	if (local>len || local<0)
+	{
+		return;
+	}
+	int i = local-1;
+	while (str[i] != '\0')
+	{
+		
+
+	}
+}

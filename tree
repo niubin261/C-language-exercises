@@ -1,1 +1,83 @@
 
+#include<stdio.h>
+#include <cstdlib>
+
+
+typedef struct
+treenode{
+	int value;
+	struct treenode*lchild;
+	struct treenode*rchild;
+}node;
+node* CreateTree()
+{
+	int value;
+	node*Root=NULL;
+	scanf("%d", &value);
+	if (value == 0)
+	{
+		return NULL;
+	}else
+	{
+		Root = (node*)malloc(sizeof(node));
+		Root->value = value;
+		Root->lchild = CreateTree();
+		Root->rchild = CreateTree();
+	}
+	return Root;
+}
+void PreOrderTraverse(node*Root)
+{
+	if (Root != NULL)
+	{
+		printf("%d", Root->value);
+	} else
+	{
+		return;
+	}
+	PreOrderTraverse(Root->lchild);
+	PreOrderTraverse(Root->rchild);
+}
+void InOrderTraverse(node*Root)
+{
+	if (Root==NULL)
+	{
+		return;
+	}
+	InOrderTraverse(Root->rchild);
+	printf("%d", Root->value);
+	InOrderTraverse(Root->rchild);
+}
+void PostOrderTraverse(node*Root)
+{
+	if (Root == NULL) {
+		return;
+	}
+	PostOrderTraverse(Root->rchild);
+	PostOrderTraverse(Root->lchild);
+	printf("%d", Root->value);
+}
+int max(int a, int b)
+{
+	if (a>b)
+	{
+		return a;
+	}
+	else { return b; }
+}
+int HightTree(node*Root)
+{
+	if (Root == NULL)return 0;
+	return max(HightTree(Root->lchild) + 1, HightTree(Root->rchild) + 1);
+}
+
+void LevelOrderTraverse(node*Root)
+{
+	
+}
+int main(int argc,char* argv[])
+{
+	node*BiTreeRoot = CreateTree();
+	InOrderTraverse(BiTreeRoot);
+	printf("%d", HightTree(BiTreeRoot));
+}

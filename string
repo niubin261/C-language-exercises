@@ -1,5 +1,5 @@
 #include <stdio.h>//clear函数delete函数都是直接奔溃，想了许久，关键是*str1指向的是常量字符串常量，不能改动任何值改动的办法是使用数组，有时间以后再改
-#include <cstdlib>
+#include <cstdlib>//
 int StrCmp(char*, char*);
 char* StrCpy(char*);
 int StrLenght(char*);

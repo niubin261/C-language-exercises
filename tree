@@ -35,7 +35,7 @@ void InOrderTraverse(node*Root) {
     if (Root==NULL) {
         return;
     }
-    InOrderTraverse(Root->rchild);
+    InOrderTraverse(Root->lchild);
     printf("%d", Root->value);
     InOrderTraverse(Root->rchild);
 }
@@ -43,8 +43,8 @@ void PostOrderTraverse(node*Root) {
     if (Root == NULL) {
         return;
     }
-    PostOrderTraverse(Root->rchild);
     PostOrderTraverse(Root->lchild);
+    PostOrderTraverse(Root->rchild);
     printf("%d", Root->value);
 }
 int max(int a, int b) {

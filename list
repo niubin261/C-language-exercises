@@ -12,6 +12,7 @@ node*DeleteList(node*,int);//删除指定的节点
 node*InsertList(node*,int idx,int no,float salary);//在特定的节点之后添加,如果特定的节点没有找到那就直接在链表的最后添加
 node*SortList(node*);//给链表排序，不要打我，我就是换一下链表内的值
 node*MergeList(node*,node*);
+node*listReserve(node*head);
 int main(){
 	node*phead1=NULL;
 	node*phead2 = NULL;
@@ -199,3 +200,24 @@ void  DestroyList(node*phead){
 		p = q;
 	}
 }
+node*listReserve(node*head) {
+  node*p=NULL;
+  node*pre=NULL;
+  node*next=NULL;
+  if(head==NULL)return ;
+  pre=head;
+  p=pre->next;
+  while (p!=NULL) {
+    /* code */
+    next=p->next;//将next指针的移位放在这
+
+    p->next=pre;
+    if(pre=head){
+      pre->next=NULL;
+    }
+    pre=p;
+    p=next;  
+  }
+  return pre;
+}
+

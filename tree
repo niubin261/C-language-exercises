@@ -1,13 +1,18 @@
+//
+// Created by Administrator on 2017/4/15.
+//
 
 #include<stdio.h>
 #include <stdlib.h>
-
-
+#include <queue>
+#include <iostream>
+using  namespace std;
 typedef struct treenode{
     int value;
     struct treenode*lchild;
     struct treenode*rchild;
 }node;
+
 node* CreateTree() {
     int value;
     node*Root=NULL;
@@ -59,17 +64,30 @@ int HightTree(node*Root) {
 }
 
 void LevelOrderTraverse(node*Root) {
+    if (Root==NULL){
+        return;
+    }
+    queue<node*>TraverseQueue;
+    TraverseQueue.push(Root);
+    if(!TraverseQueue.empty()){
+        node*now=TraverseQueue.front();
+        cout<<now->value;
+        TraverseQueue.pop();
+        if(now->lchild!=NULL){
+            TraverseQueue.push(now->lchild);
 
-
-
+        }
+        if(now->rchild!=NULL){
+            TraverseQueue.push(now->rchild);
+        }
+    }
 }
 void WidthTree(node*Root){
-
-
+    
 }
- int FindNodeFather(node*Root,int value){
+int FindNodeFather(node*Root,int value){
 
-    if(Root==NULL)return NULL;//没有找到
+    if(Root==NULL)return 0;//没有找到
 
     if(Root->lchild!=NULL&&Root->lchild->value==value){
         return Root->value;
@@ -79,14 +97,12 @@ void WidthTree(node*Root){
         FindNodeFather(Root->lchild,value);//继续找
         FindNodeFather(Root->rchild,value);
     }
-     return -1;//没有找到
+    return -1;//没有找到
 
 
 }
 int main(int argc,char* argv[]){
     node*BiTreeRoot = CreateTree();
     PostOrderTraverse(BiTreeRoot);
-    printf("%d", HightTree(BiTreeRoot));
-
-    printf("%d",FindNodeFather(BiTreeRoot,3));
+    LevelOrderTraverse(BiTreeRoot);
 }

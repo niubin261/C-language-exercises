@@ -19,7 +19,7 @@ node* CreateTree() {
     scanf("%d", &value);
     if (value == 0) {
         return NULL;
-    }else {
+    } else {
         Root = (node*)malloc(sizeof(node));
         Root->value = value;
         Root->lchild = CreateTree();
@@ -55,8 +55,7 @@ void PostOrderTraverse(node*Root) {
 int max(int a, int b) {
     if (a>b) {
         return a;
-    }
-    else { return b; }
+    } else { return b; }
 }
 int HightTree(node*Root) {
     if (Root == NULL)return 0;
@@ -82,18 +81,51 @@ void LevelOrderTraverse(node*Root) {
         }
     }
 }
-void WidthTree(node*Root){
-    
+
+int WidthTree(node*Root){
+    if(Root=NULL){
+        return 0;
+    }
+    int curwidth=1;
+    int nextwidth=0;
+    int width=1;
+    queue<node*>WidthQueue;
+    WidthQueue.push(Root);
+    while (!WidthQueue.empty()) {
+        while (curwidth!=0) {
+            node*curnode=WidthQueue.front();
+            WidthQueue.pop();
+            curwidth--;
+            if (curnode->lchild!=NULL) {
+                WidthQueue.push(curnode->lchild);
+                nextwidth++;
+            }
+            if (curnode->rchild!=NULL) {
+                WidthQueue.push(curnode->rchild);
+                nextwidth++;
+            }
+
+        }
+        if (width<nextwidth) {
+            width = nextwidth;
+
+        }
+        curwidth = width;
+        nextwidth = 0;
+    }
+
+
+
 }
 int FindNodeFather(node*Root,int value){
 
     if(Root==NULL)return 0;//没有找到
 
-    if(Root->lchild!=NULL&&Root->lchild->value==value){
+    if (Root->lchild!=NULL&&Root->lchild->value==value){
         return Root->value;
-    }else if(Root->rchild!=NULL&&Root->rchild->value==value){
+    } else if (Root->rchild!=NULL&&Root->rchild->value==value){
         return Root->value;
-    }else{
+    } else {
         FindNodeFather(Root->lchild,value);//继续找
         FindNodeFather(Root->rchild,value);
     }
@@ -105,4 +137,5 @@ int main(int argc,char* argv[]){
     node*BiTreeRoot = CreateTree();
     PostOrderTraverse(BiTreeRoot);
     LevelOrderTraverse(BiTreeRoot);
+    printf("%d",WidthTree(BiTreeRoot));
 }

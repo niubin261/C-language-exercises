@@ -16,6 +16,6 @@ public:
     BiTree():Root(NULL){}
     Node*CreateBiTree();
     void PreOrderTraverse(Node*Root);
-
+    void FindNode(Node*Root,int&cnt);
 };
 #endif //TREECLASS_TREE_H

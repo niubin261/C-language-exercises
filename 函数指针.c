@@ -17,3 +17,5 @@ void func(int i,int j) {
 void caller(void(*p)(int, int)) {
     func(1,2);
 }
+//p为一个函数指针，指向一个函数注意定义的方法,函数返回空,参数为两个int
+//

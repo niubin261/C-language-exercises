@@ -23,3 +23,20 @@ Node* BiTree::CreateBiTree() {
     }
     return Root;
 }
+void BiTree::FindNode(Node* Root,int& cnt) {
+
+    if(Root->leftChild==NULL&&Root->rightChild!=NULL) {
+        cnt++;
+        FindNode(Root->leftChild,cnt);
+    }
+    else if (Root->leftChild!=NULL&&Root->rightChild==NULL) {
+        cnt++;
+        FindNode(Root->rightChild,cnt);
+    }
+    else if (Root->rightChild!=NULL&&Root->leftChild!=NULL) {
+        FindNode(Root->leftChild,cnt);
+        FindNode(Root->rightChild,cnt);
+    }
+    else return;
+
+}

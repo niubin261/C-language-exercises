@@ -93,6 +93,19 @@ void PrintList(node*phead){
 
 	}
 }
+node*SearchList(node*phead,int no){
+	node*p=phead;
+	node*q=NULL;
+	if(p==NULL){
+		return NULL;
+	}
+	while(p!=NULL){
+		if(p->no==no)return p;
+		p=p->next;
+	}
+	return NULL;
+
+}
 node*InsertList(node*phead,int idx,int no,float salary){
 	node*p = phead;
 	node*q = NULL;
